@@ -47,19 +47,20 @@ def quick_sort( arr, low, high ):
     if high - low <= 0:
         return arr
     
-    for i in range(low+1, high-1):
-        if arr[i] < arr[low]:
+    startingPoint = low
+    for i in range(startingPoint+1, high-1):
+        if arr[i] < arr[startingPoint]:
             mark = arr[i]
-            arr[i] = arr[low + 1]
-            arr[mark + 1] = mark
+            arr[i] = arr[startingPoint + 1]
+            arr[startingPoint + 1] = mark
 
-            mark = arr[low]
-            arr[mark] = arr[mark + 1]
-            arr[mark + 1] = mark
-            mark += 1
+            mark = arr[startingPoint]
+            arr[startingPoint] = arr[startingPoint + 1]
+            arr[startingPoint + 1] = mark
+            startingPoint += 1
 
-    arr = quick_sort(arr, low, mark - 1)
-    arr = quick_sort(arr, mark + 1, high)
+    arr = quick_sort(arr, low, startingPoint - 1)
+    arr = quick_sort(arr, startingPoint + 1, high)
 
     return arr
 
